@@ -34,21 +34,25 @@
   align-items: center;
   width: 100%;
   font-family: "poppins", sans-serif;
+  font-size: .9rem;
   color: var(--white-color);
 }
 .footer__item {
   width: 100%;
   text-align: center;
 }
+.footer__item span {
+  padding: 5px;
+}
 .footer__item--left {
   content: "";
-  width: 60%;
+  width: 55%;
   height: 2px;
   background: var(--white-color);
 }
 .footer__item--right {
   content: "";
-  width: 60%;
+  width: 55%;
   height: 2px;
   left: 0px;
   background: var(--white-color);
@@ -57,7 +61,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 25px auto;
+  margin: 10px auto;
 }
 .network-button {
   background: rgba(255, 255, 255, 0.47);
@@ -81,5 +85,6 @@
 .register-message .register-message__link {
   color: var(--pink-light-color);
   text-decoration: none;
+  margin-left: 8px;
 }
 </style>
