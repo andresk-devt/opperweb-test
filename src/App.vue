@@ -3,6 +3,6 @@
 </template>
 
 <style scoped>
-@import "@/assets/css/style.css";
+@import "@/assets/css/main.css";
 
 </style>

@@ -1,0 +1,14 @@
+:root {
+  --pink-color: #CA38ED;
+  --pink-light-color: #E487FB;
+  --purple-color: #3E1149;
+  --gray-dark-color: #574E5A;
+  --gray-light-color: #BCB1BF;
+  --white-color: #FFFFFF;
+}
+
+/* fonts */
+@import url("https://use.typekit.net/beb4yio.css");
+
+/* reset html syles */
+@import "./style.css";
