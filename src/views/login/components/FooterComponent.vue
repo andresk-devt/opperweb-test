@@ -1,3 +1,15 @@
+<script setup>
+import { useRouter, useRoute } from "vue-router";
+
+const router = useRouter();
+
+const changePage = (name) => {
+  router.push({
+    name: name
+  });
+}
+</script>
+
 <template>
   <div class="footer-content">
     <div class="footer">
@@ -20,7 +32,7 @@
     </div>
     <div class="register-message">
       <p class="register-message__text">
-        Quieres registrarte? <a href="" class="register-message__link">Registrate</a>
+        Quieres registrarte? <span href="" class="register-message__link" @click="changePage('Register')">Registrate</span>
       </p>
     </div>
   </div>
@@ -86,5 +98,6 @@
   color: var(--pink-light-color);
   text-decoration: none;
   margin-left: 8px;
+  cursor: pointer;
 }
 </style>
