@@ -65,25 +65,6 @@ const { screenWidth } = Extend();
 .login-content:nth-child(1) {
   background: black;
 }
-.brand-container {
-  display: flex;
-  align-items: center;
-  padding: 25px;
-  position: absolute;
-}
-.brand-container img {
-  padding-right: 15px;
-}
-.brand-container .brand-container__text {
-  font-family: "poppins", sans-serif;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--white-color);
-  margin: 0px;
-}
-.brand-container .brand-container__text--pink {
-  color: var(--pink-color);
-}
 .login-content-header {
   color: var(--white-color);
   text-align: center;
@@ -108,11 +89,6 @@ const { screenWidth } = Extend();
 .login-content-footer {
   width: 90%;
   margin: 15px auto;
-}
-.back-button {
-  padding: 10px 25px;
-  position: absolute;
-  top: 80px;
 }
 
 @media (max-width: 800px) {

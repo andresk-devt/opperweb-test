@@ -1,7 +1,5 @@
 <script setup>
-import { useRouter, useRoute } from "vue-router";
-
-const emit = defineEmits();
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 const changePage = (name) => {

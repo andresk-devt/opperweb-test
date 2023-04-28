@@ -7,6 +7,32 @@
   --white-color: #FFFFFF;
 }
 
+/* Global styles */
+.brand-container {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  position: absolute;
+}
+.brand-container img {
+  padding-right: 15px;
+}
+.brand-container .brand-container__text {
+  font-family: "poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--white-color);
+  margin: 0px;
+}
+.brand-container .brand-container__text--pink {
+  color: var(--pink-color);
+}
+.back-button {
+  padding: 10px 25px;
+  position: absolute;
+  top: 80px;
+}
+
 /* fonts */
 @import url("https://use.typekit.net/beb4yio.css");
 
