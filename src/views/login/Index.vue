@@ -1,12 +1,9 @@
 <script setup>
 import FooterComponent from "./components/FooterComponent.vue";
-import CarouselComponent from "./components/CarouselComponent.vue";
+import CarouselComponent from "@/components/CarouselComponent.vue";
+import LoginFormComponent from "./components/LoginFormComponent.vue";
+
 import Extend from "@/Extend/onResize";
-
-import { ref } from "vue";
-
-const email = ref("");
-const password = ref("");
 const { screenWidth } = Extend();
 </script>
 
@@ -35,33 +32,7 @@ const { screenWidth } = Extend();
           </div>
         </div>
         <div class="login-content-form">
-          <div class="input-container">
-            <label for="email" class="input-container__label">Email</label>
-            <div class="input-container-content">
-              <input
-                id="email"
-                class="input-container__input"
-                v-model="email"
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div class="input-container">
-            <label for="password" class="input-container__label"
-              >Password</label
-            >
-            <div class="input-container-content">
-              <input
-                id="password"
-                class="input-container__input"
-                v-model="password"
-                placeholder="Password"
-              />
-              <ion-icon name="eye-outline"></ion-icon>
-            </div>
-            <span class="forgot-password">¿Olvido la contraseña?</span>
-          </div>
-          <button class="button-container">Acceder</button>
+          <LoginFormComponent />
         </div>
         <div class="login-content-footer">
           <FooterComponent />
@@ -133,64 +104,6 @@ const { screenWidth } = Extend();
 .login-content-form {
   width: 90%;
   margin: 0px auto;
-}
-.input-container {
-  display: flex;
-  flex-direction: column;
-  font-family: "poppins", sans-serif;
-  margin: 10px auto;
-  position: relative;
-}
-.input-container .input-container-content {
-  display: flex;
-  align-items: center;
-  padding: 13px;
-  border-radius: 10px;
-  border: 2px solid var(--white-color);
-  outline: none;
-  background: rgba(255, 255, 255, 0.47);
-}
-.input-container .input-container__label {
-  font-size: 0.9rem;
-  font-weight: lighter;
-  color: var(--white-color);
-  margin: 3px 0px;
-}
-.input-container .input-container__input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-}
-.input-container .input-container-content ion-icon {
-  color: var(--white-color);
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-.forgot-password {
-  right: 0;
-  top: 90px;
-  position: absolute;
-  font-size: 0.875rem;
-  color: var(--pink-light-color);
-  cursor: pointer;
-}
-.button-container {
-  color: #3e1149;
-  background: var(--pink-light-color);
-  border: none;
-  outline: none;
-  width: 100%;
-  height: 45px;
-  font-size: 1rem;
-  font-family: "roboto";
-  border-radius: 12px;
-  margin: 35px auto;
-  cursor: pointer;
-}
-.button-container:hover {
-  background: var(--pink-light-color);
-  opacity: 0.8;
 }
 .login-content-footer {
   width: 90%;
