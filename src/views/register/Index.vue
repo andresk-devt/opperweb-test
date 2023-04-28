@@ -1,24 +1,13 @@
 <script setup>
 import CarouselComponent from "@/components/CarouselComponent.vue";
+import Brand from "@/components/Brand.vue";
 
-import Extend from "@/Extend/onResize";
-const { screenWidth } = Extend();
 </script>
 
 <template>
   <div class="register">
     <div class="register-content">
-      <div class="brand-container" v-if="screenWidth > 800">
-        <img src="@/assets/images/logo.png" alt="" />
-        <p class="brand-container__text">
-          anime<span class="brand-container__text brand-container__text--pink"
-            >yabu.</span
-          >
-        </p>
-      </div>
-      <div class="back-button">
-        <img src="@/assets/images/back-icon.png" alt="Icon" />
-      </div>
+      <Brand route="Login" />
     </div>
     <div class="register-content">
       <CarouselComponent />
