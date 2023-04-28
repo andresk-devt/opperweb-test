@@ -10,5 +10,8 @@
 /* fonts */
 @import url("https://use.typekit.net/beb4yio.css");
 
+/* Inputs styles */
+@import "./inputs.css";
+
 /* reset html syles */
 @import "./style.css";

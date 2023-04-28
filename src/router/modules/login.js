@@ -7,7 +7,7 @@ const loginRoutes = [
   {
     path: "/register",
     name: "Register",
-    component: () => import("../../views/register/Index.vue")
+    component: () => import("../../views/register/Index.vue"),
   }
 ];
 

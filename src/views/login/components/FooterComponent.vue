@@ -1,8 +1,9 @@
 <script setup>
 import { useRouter, useRoute } from "vue-router";
 
-const router = useRouter();
+const emit = defineEmits();
 
+const router = useRouter();
 const changePage = (name) => {
   router.push({
     name: name
