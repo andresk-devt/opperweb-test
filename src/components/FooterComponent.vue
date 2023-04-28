@@ -7,6 +7,11 @@ const changePage = (name) => {
     name: name
   });
 }
+
+defineProps({
+  route: String,
+  routeText: String
+});
 </script>
 
 <template>
@@ -31,7 +36,7 @@ const changePage = (name) => {
     </div>
     <div class="register-message">
       <p class="register-message__text">
-        Quieres registrarte? <span href="" class="register-message__link" @click="changePage('Register')">Registrate</span>
+        Quieres registrarte? <span href="" class="register-message__link" @click="changePage(route)">{{ routeText }}</span>
       </p>
     </div>
   </div>

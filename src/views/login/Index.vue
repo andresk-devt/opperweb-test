@@ -1,11 +1,8 @@
 <script setup>
 import Brand from "../../components/Brand.vue";
-import FooterComponent from "./components/FooterComponent.vue";
+import FooterComponent from "../../components/FooterComponent.vue";
 import CarouselComponent from "@/components/CarouselComponent.vue";
 import LoginFormComponent from "./components/LoginFormComponent.vue";
-
-import Extend from "@/Extend/onResize";
-const { screenWidth } = Extend();
 </script>
 
 <script setup></script>
@@ -26,7 +23,7 @@ const { screenWidth } = Extend();
           <LoginFormComponent />
         </div>
         <div class="login-content-footer">
-          <FooterComponent />
+          <FooterComponent route="Register" route-text="Registrarse" />
         </div>
       </div>
     </div>
@@ -46,20 +43,20 @@ const { screenWidth } = Extend();
   width: 50%;
 }
 .login-content-container {
-  padding: 30px 20%;
+  width: 80%;
+  margin: 20px auto;
   height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5%;
 }
 .login-content:nth-child(1) {
   background: black;
+  height: 100vh;
 }
 .login-content-header {
   color: var(--white-color);
   text-align: center;
-  padding-top: 50px;
 }
 .login-content-header h2 {
   font-size: 2.25rem;
@@ -83,15 +80,17 @@ const { screenWidth } = Extend();
 }
 
 @media (max-width: 800px) {
-  .back-button {
-    top: 20px;
+  .login-content-header {
+    padding-top: 0px;
   }
   .login-content-container {
     padding: 30px;
     height: 100vh;
+    width: 90%;
   }
   .login-content:nth-child(1) {
     width: 100%;
+    height: 100vh;
     background: linear-gradient(
       175deg,
       rgba(228, 135, 251, 1) 0%,

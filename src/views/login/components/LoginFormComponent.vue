@@ -42,21 +42,4 @@ const password = ref("");
   color: var(--pink-light-color);
   cursor: pointer;
 }
-.button-container {
-  color: #3e1149;
-  background: var(--pink-light-color);
-  border: none;
-  outline: none;
-  width: 100%;
-  height: 45px;
-  font-size: 1rem;
-  font-family: "roboto";
-  border-radius: 12px;
-  margin: 35px auto;
-  cursor: pointer;
-}
-.button-container:hover {
-  background: var(--pink-light-color);
-  opacity: 0.8;
-}
 </style>
