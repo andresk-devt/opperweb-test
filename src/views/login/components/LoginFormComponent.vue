@@ -3,6 +3,20 @@ import { ref } from "vue";
 
 const email = ref("");
 const password = ref("");
+
+import { useStore } from "vuex";
+
+const store = useStore();
+const login = async () => {
+  store.dispatch("login/login", {
+    email: "randommail2@mail.com",
+    password: "strongkey1232",
+    apiKey: "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g",
+    utcTimeStamp: "2022-01-20T09:39:38Z",
+    signature:
+      "756403b52606111ee553e75e927bc0d92cc376d2aa63d469ee6d851e2cc04e9a",
+  });
+};
 </script>
 
 <template>
@@ -30,7 +44,7 @@ const password = ref("");
     </div>
     <span class="forgot-password">¿Olvido la contraseña?</span>
   </div>
-  <button class="button-container">Acceder</button>
+  <button class="button-container" @click="login()">Acceder</button>
 </template>
 
 <style scoped>
