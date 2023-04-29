@@ -2,6 +2,8 @@
 import Brand from "@/components/Brand.vue";
 import { useRouter } from "vue-router";
 
+import Extend from "@/Extend/onResize";
+const { screenWidth } = Extend();
 const route = useRouter();
 
 const changePage = (name) => {
@@ -16,7 +18,14 @@ const logout = () => {
 
 <template>
   <div class="sidebar-layout">
-    <Brand class="mt-3" :showBackButton="false" />
+    <div class="sidebar-header">
+      <img src="@/assets/images/logo.png" alt="">
+      <p class="sidebar-header-text">
+        anime<span class="sidebar-header-text sidebar-header-text--pink"
+          >yabu.</span
+        >
+      </p>
+    </div>
     <div class="sidebar-content">
       <div class="sidebar-section">
         <div class="sidebar-section__title">
@@ -43,10 +52,30 @@ const logout = () => {
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
 <style scoped>
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.sidebar-header-text {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-family: "poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--white-color);
+  margin: 0px;
+}
+.sidebar-header-text--pink {
+  color: var(--pink-color);
+}
+
 .sidebar-content {
   margin: 30px auto;
 }
@@ -70,5 +99,13 @@ const logout = () => {
   font-family: "poppins", sans-serif;
   color: var(--white-color);
   font-size: 1.2rem;
+}
+@media (max-width: 1050px) {
+  .sidebar-header img {
+    display: none;
+  }
+  .sidebar-header {
+    justify-content: center;
+  }
 }
 </style>

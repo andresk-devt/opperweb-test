@@ -60,4 +60,12 @@ onMounted(async () => {
   color: var(--white-color);
   font-family: "poppins", sans-serif;
 }
+@media (max-width: 900px) {
+  .layout-content {
+    width: 100%;
+  }
+  .layout-sidebar {
+    display: none;
+  }
+}
 </style>
