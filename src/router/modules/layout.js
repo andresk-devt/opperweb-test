@@ -30,7 +30,14 @@ const layoutRoutes = [
     beforeEnter: (to, from, next) => {
       denyRouteAccess(next, '/login');
     },
-    component: () => import("../../views/layout/Index.vue")
+    component: () => import("../../views/layout/Index.vue"),
+    children: [
+      {
+        path: '',
+        name: 'DashboardHome',
+        component: () => import('../../views/Home/Index.vue'),
+      },
+    ]
   }
 ];
 

@@ -19,6 +19,7 @@ const myInfo = computed(() => {
       <h1>
         Hola, <strong>{{ myInfo.name + " " + myInfo.lastname }}</strong>
       </h1>
+      <router-view />
     </main>
   </div>
 </template>
