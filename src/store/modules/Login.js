@@ -13,8 +13,8 @@ export default {
   actions: {
     async login(_, payload) {
       try {
-        const respnose = await login.login(payload);
-        return respnose;
+        const response = await login.login(payload);
+        return response;
       } catch (error) {
         errorMessage(error.response.data.message);
         return error;
