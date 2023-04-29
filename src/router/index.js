@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import loginRoutes from './modules/login'
+import layoutRoutes from './modules/layout'
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     ...loginRoutes,
+    ...layoutRoutes,
     ...routes
   ]
 })

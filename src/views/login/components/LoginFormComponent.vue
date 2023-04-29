@@ -65,7 +65,8 @@ const login = async () => {
     });
 
     if (response.access_token) {
-      // redirect to dashborad
+      localStorage.setItem("access_token", response.access_token);
+      changePage("Home");
     }
 
   }
