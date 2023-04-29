@@ -3,6 +3,14 @@ import Brand from "../../components/Brand.vue";
 import FooterComponent from "../../components/FooterComponent.vue";
 import CarouselComponent from "@/components/CarouselComponent.vue";
 import LoginFormComponent from "./components/LoginFormComponent.vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  console.log(response, 'response');
+}
+getTimeZone();
 </script>
 
 <script setup></script>

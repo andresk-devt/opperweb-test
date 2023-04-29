@@ -1,18 +1,25 @@
 <script setup>
 import naturalFormComponent from "./form/naturalFormComponent.vue";
 import juridicalFormComponent from "./form/juridicaFormComponent.vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useStore } from "vuex";
 
 const currentComponent = ref(naturalFormComponent);
 
 const updateComponent = (event) => {
-  console.log(event.target.value, "event !!");
   if (event.target.value === "natural") {
     currentComponent.value = naturalFormComponent;
   } else {
     currentComponent.value = juridicalFormComponent;
   }
 };
+
+const store = useStore();
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  console.log(response, 'response');
+}
+getTimeZone();
 </script>
 
 <template>
@@ -44,9 +51,8 @@ const updateComponent = (event) => {
   </div>
   <div class="form-container">
     <KeepAlive>
-      <component :is="currentComponent" />
+      <component :is="currentComponent" ref="registerForm" />
     </KeepAlive>
-    <button class="button-container">Registrar</button>
   </div>
 </template>
 
