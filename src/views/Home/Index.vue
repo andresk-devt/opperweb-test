@@ -42,4 +42,9 @@ const changePage = (name) => {
   margin: 10px auto;
   width: 100%;
 }
+@media (max-width: 900px) {
+  .home-content {
+    width: 70%;
+  }
+}
 </style>

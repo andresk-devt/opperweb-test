@@ -2,29 +2,40 @@
 import Brand from "@/components/Brand.vue";
 import { useRouter } from "vue-router";
 
-import Extend from "@/Extend/onResize";
-const { screenWidth } = Extend();
 const route = useRouter();
+
+defineProps({
+  showSidebarMenu: Boolean,
+});
+const emit = defineEmits(["closeButton"]);
 
 const changePage = (name) => {
   route.push({ name: name });
-}
+  emit('closeButton', false);
+};
 
 const logout = () => {
   localStorage.clear();
-  changePage("Home")
-}
+  emit('closeButton', false);
+  changePage("Home");
+};
 </script>
 
 <template>
-  <div class="sidebar-layout">
+  <div class="sidebar-layout" :class="showSidebarMenu ? 'active-sidebar' : ''">
     <div class="sidebar-header">
-      <img src="@/assets/images/logo.png" alt="">
+      <img src="@/assets/images/logo.png" alt="" />
       <p class="sidebar-header-text">
         anime<span class="sidebar-header-text sidebar-header-text--pink"
           >yabu.</span
         >
       </p>
+    </div>
+    <div class="close-button" v-if="showSidebarMenu">
+      <ion-icon
+        name="close-circle-outline"
+        @click="emit('closeButton', false)"
+      ></ion-icon>
     </div>
     <div class="sidebar-content">
       <div class="sidebar-section">
@@ -52,7 +63,6 @@ const logout = () => {
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -99,6 +109,19 @@ const logout = () => {
   font-family: "poppins", sans-serif;
   color: var(--white-color);
   font-size: 1.2rem;
+}
+.active-sidebar .sidebar-header {
+  display: none;
+}
+.close-button {
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  justify-content: end;
+  padding: 30px;
+}
+.close-button ion-icon {
+  cursor: pointer;
 }
 @media (max-width: 1050px) {
   .sidebar-header img {

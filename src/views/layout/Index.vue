@@ -2,13 +2,19 @@
 import SidebarLayoutVue from "./components/SidebarLayout.vue";
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const store = useStore();
+
+const showSidebarMenu = ref(false);
 
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");
   return response;
+};
+
+const handleSidebar = (data) => {
+  showSidebarMenu.value = data;
 };
 
 const getMeInformation = async () => {
@@ -32,11 +38,14 @@ onMounted(async () => {
 
 <template>
   <div class="layout">
-    <div class="menu-icon-content">
+    <div class="menu-icon-content" @click="handleSidebar(true)">
       <ion-icon name="menu-outline"></ion-icon>
     </div>
-    <div class="layout-sidebar">
-      <SidebarLayoutVue />
+    <div
+      class="layout-sidebar"
+      :class="showSidebarMenu ? 'active-sidebar' : ''"
+    >
+      <SidebarLayoutVue :showSidebarMenu="showSidebarMenu" @closeButton="handleSidebar(data)" />
     </div>
     <main class="layout-content">
       <router-view />
@@ -55,7 +64,7 @@ onMounted(async () => {
   color: var(--white-color);
   font-size: 3rem;
   cursor: pointer;
-} 
+}
 .layout-sidebar {
   width: 20%;
   background: var(--purple-color);
@@ -86,6 +95,13 @@ onMounted(async () => {
   }
   .layout-sidebar {
     display: none;
+  }
+  .active-sidebar {
+    display: block;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 10;
   }
 }
 </style>
