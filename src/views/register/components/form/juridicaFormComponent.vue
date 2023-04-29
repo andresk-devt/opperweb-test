@@ -82,7 +82,7 @@ const registerJuridicaUser = async () => {
       "telephone": phone.value,
       "NIT": nit.value,
       "razon_social": company_name.value,
-      "type_user_id": 1,
+      "type_user_id": "1",
       "verify_tc": "1",
       "password": password.value,
       "password_confirmation": password_confirmation.value,
