@@ -71,7 +71,7 @@ const registerNaturalUser = async () => {
 
     const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
     const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
-    const signature = `${privateKey},${publicKey},${currentTime}`;
+    const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
 

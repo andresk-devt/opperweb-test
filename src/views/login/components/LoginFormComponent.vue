@@ -10,6 +10,16 @@ const password = ref("");
 const store = useStore();
 const errors = ref({});
 
+const showPassword = ref(false);
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const getPasswordType = () => {
+  return showPassword.value ? "text" : "password";
+};
+
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");
   return response;
@@ -43,7 +53,7 @@ const login = async () => {
 
     const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
     const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
-    const signature = `${privateKey},${publicKey},${currentTime}`;
+    const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
     const response = await store.dispatch("login/login", {
@@ -73,7 +83,7 @@ const login = async () => {
     </div>
   </div>
   <div class="input-container">
-    <label for="password" class="input-container__label">Password</label>
+    <label for="password" class="input-container__label">Contraseña</label>
     <div
       class="input-container-content"
       :class="errors['password'] ? 'missing-field' : ''"
@@ -81,10 +91,16 @@ const login = async () => {
       <input
         id="password"
         class="input-container__input"
-        v-model="password"
         placeholder="Password"
+        :type="getPasswordType()"
+        v-model="password"
       />
-      <ion-icon name="eye-outline"></ion-icon>
+      <div class="" v-if="showPassword">
+        <ion-icon name="eye-outline" @click="togglePassword()"></ion-icon>
+      </div>
+      <div class="" v-if="!showPassword">
+        <ion-icon name="eye-off-outline" @click="togglePassword()"></ion-icon>
+      </div>
     </div>
     <span class="forgot-password">¿Olvido la contraseña?</span>
   </div>
