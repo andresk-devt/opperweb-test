@@ -3,22 +3,13 @@ import { ref } from "vue";
 import { loginSchema } from "@/schema/loginSchema";
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
+import { showPassword, getPasswordType, togglePassword } from "@/Extend/changeTypePassword";
 
 const email = ref("");
 const password = ref("");
 
 const store = useStore();
 const errors = ref({});
-
-const showPassword = ref(false);
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value;
-};
-
-const getPasswordType = () => {
-  return showPassword.value ? "text" : "password";
-};
 
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");

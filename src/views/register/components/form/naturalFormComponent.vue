@@ -3,35 +3,25 @@ import { ref } from "vue";
 import { registerSchema } from "@/schema/naturalSchema";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { successMessage } from '@/utils/SweetalertNotifications'
+import { successMessage } from "@/utils/SweetalertNotifications";
+import {
+  showPassword,
+  showConfirmPassword,
+  getPasswordType,
+  togglePassword,
+  getConfirmPasswordType,
+  toggleConfirmPassword,
+} from "@/Extend/changeTypePassword";
 import CryptoJS from "crypto-js";
 
 const store = useStore();
-
-const showPassword = ref(false);
-const showConfirmPassword = ref(false);
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value;
-};
-const toggleConfirmPassword = () => {
-  showConfirmPassword.value = !showConfirmPassword.value;
-};
-
-const getPasswordType = () => {
-  return showPassword.value ? "text" : "password";
-};
-const getConfirmPasswordType = () => {
-  return showConfirmPassword.value ? "text" : "password";
-};
-
 const router = useRouter();
 
 const changePage = (name) => {
   router.push({
-    name: name
+    name: name,
   });
-}
+};
 
 const name = ref("");
 const lastname = ref("");
@@ -84,22 +74,21 @@ const registerNaturalUser = async () => {
     const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
-
     // Codigo aqui
 
     const response = await store.dispatch("register/registerUser", {
-      "name": name.value,
-      "lastname": lastname.value,
-      "telephone": phone.value,
-      "identy_document": id.value,
-      "type_user_id": "2",
-      "verify_tc": "1",
-      "password": password.value,
-      "password_confirmation": password_confirmation.value,
-      "email": email.value,
-      "apiKey": publicKey,
-      "utcTimeStamp": currentTime.timezone,
-      "signature": signatureHash
+      name: name.value,
+      lastname: lastname.value,
+      telephone: phone.value,
+      identy_document: id.value,
+      type_user_id: "2",
+      verify_tc: "1",
+      password: password.value,
+      password_confirmation: password_confirmation.value,
+      email: email.value,
+      apiKey: publicKey,
+      utcTimeStamp: currentTime.timezone,
+      signature: signatureHash,
     });
     if (response.token) {
       successMessage("Se a registrado de manera exitosa!");

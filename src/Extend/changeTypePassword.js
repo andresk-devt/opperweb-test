@@ -1,21 +1,20 @@
-import { ref } from 'vue';
+import { ref } from "vue";
 
-export default function() {
-  // const screenWidth = ref(window.innerWidth);
+export const showPassword = ref(false);
+export const showConfirmPassword = ref(false);
 
-  // const onResize = () => {
-  //   screenWidth.value = window.innerWidth;
-  // };
+export const togglePassword = () => {
+  showPassword.value = !showPassword.value;
+};
 
-  // onMounted(() => {
-  //   window.addEventListener('resize', onResize);
-  // });
+export const toggleConfirmPassword = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
+};
 
-  // onUnmounted(() => {
-  //   window.removeEventListener('resize', onResize);
-  // });
+export const getPasswordType = () => {
+  return showPassword.value ? "text" : "password";
+};
 
-  // return {
-  //   screenWidth,
-  // };
-}
+export const getConfirmPasswordType = () => {
+  return showConfirmPassword.value ? "text" : "password";
+};

@@ -2,27 +2,17 @@
 import { ref } from "vue";
 import { registerSchema } from "@/schema/juridicaSchema";
 import { useStore } from "vuex";
+import {
+  showPassword,
+  showConfirmPassword,
+  getPasswordType,
+  togglePassword,
+  getConfirmPasswordType,
+  toggleConfirmPassword,
+} from "@/Extend/changeTypePassword";
 import CryptoJS from 'crypto-js';
 
 const store = useStore();
-// Remembere refactor this code to only use once time
-
-const showPassword = ref(false);
-const showConfirmPassword = ref(false);
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value;
-};
-const toggleConfirmPassword = () => {
-  showConfirmPassword.value = !showConfirmPassword.value;
-};
-
-const getPasswordType = () => {
-  return showPassword.value ? "text" : "password";
-};
-const getConfirmPasswordType = () => {
-  return showConfirmPassword.value ? "text" : "password";
-};
 
 const company_name = ref("");
 const nit = ref("");
