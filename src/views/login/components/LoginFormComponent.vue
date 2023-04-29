@@ -1,28 +1,69 @@
 <script setup>
 import { ref } from "vue";
+import { loginSchema } from "@/schema/loginSchema";
+import { useStore } from "vuex";
+import CryptoJS from "crypto-js";
 
 const email = ref("");
 const password = ref("");
 
-import { useStore } from "vuex";
-
 const store = useStore();
+const errors = ref({});
+
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  return response;
+};
+
+const validateForm = async () => {
+  errors.value = {};
+  try {
+    const formData = {
+      email: email.value,
+      password: password.value,
+    };
+    const isValid = await loginSchema.validate(formData, {
+      abortEarly: false,
+    });
+    return isValid;
+  } catch (error) {
+    const validationErrors = {};
+    error.inner.forEach((element) => {
+      validationErrors[element.path] = true;
+    });
+    errors.value = validationErrors;
+    return false;
+  }
+};
+
 const login = async () => {
-  store.dispatch("login/login", {
-    email: "randommail2@mail.com",
-    password: "strongkey1232",
-    apiKey: "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g",
-    utcTimeStamp: "2022-01-20T09:39:38Z",
-    signature:
-      "756403b52606111ee553e75e927bc0d92cc376d2aa63d469ee6d851e2cc04e9a",
-  });
+  const isValidForm = await validateForm();
+  if (isValidForm) {
+    const currentTime = await getTimeZone();
+
+    const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
+    const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
+    const signature = `${privateKey},${publicKey},${currentTime}`;
+    const signatureHash = CryptoJS.SHA256(signature).toString();
+
+    store.dispatch("login/login", {
+      email: email.value,
+      password: password.value,
+      apiKey: publicKey,
+      utcTimeStamp: currentTime.timezone,
+      signature: signatureHash,
+    });
+  }
 };
 </script>
 
 <template>
   <div class="input-container">
     <label for="email" class="input-container__label">Email</label>
-    <div class="input-container-content">
+    <div
+      class="input-container-content"
+      :class="errors['email'] ? 'missing-field' : ''"
+    >
       <input
         id="email"
         class="input-container__input"
@@ -33,7 +74,10 @@ const login = async () => {
   </div>
   <div class="input-container">
     <label for="password" class="input-container__label">Password</label>
-    <div class="input-container-content">
+    <div
+      class="input-container-content"
+      :class="errors['password'] ? 'missing-field' : ''"
+    >
       <input
         id="password"
         class="input-container__input"

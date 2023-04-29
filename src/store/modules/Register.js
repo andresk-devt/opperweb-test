@@ -12,7 +12,6 @@ export default {
   },
   actions: {
     async registerUser(_, payload) {
-      console.log('register in vue', payload);
       try {
         const respnose = await register.register(payload);
         return respnose;

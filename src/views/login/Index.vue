@@ -8,7 +8,6 @@ import { useStore } from "vuex";
 const store = useStore();
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");
-  console.log(response, 'response');
 }
 getTimeZone();
 </script>

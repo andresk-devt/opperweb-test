@@ -54,7 +54,6 @@ const validateForm = async () => {
       validationErrors[element.path] = true;
     });
     errors.value = validationErrors;
-    console.log(errors.value);
     return false;
   }
 };
@@ -74,7 +73,6 @@ const registerJuridicaUser = async () => {
     const signature = `${privateKey},${publicKey},${currentTime}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
-    console.log(signatureHash, 'Este es el token que me devuelve');
 
     // Codigo aqui
 
