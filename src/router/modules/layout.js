@@ -31,25 +31,38 @@ const layoutRoutes = [
       denyRouteAccess(next, '/login');
     },
     component: () => import("../../views/layout/Index.vue"),
+    redirect: { name: 'DashboardHome' },
     children: [
       {
-        path: '/dashboard',
+        path: '/dashboard/home',
         name: 'DashboardHome',
+        beforeEnter: (to, from, next) => {
+          denyRouteAccess(next, '/login');
+        },
         component: () => import('../../views/Home/Index.vue'),
       },
       {
         path: "/dashboard/categories-list",
         name: "CategoriesList",
+        beforeEnter: (to, from, next) => {
+          denyRouteAccess(next, '/login');
+        },
         component: () => import("../../views/CategoriesList/Index.vue"),
       },
       {
-        path: '/categorie',
+        path: '/dashboard/categorie',
         name: 'categorieCreate',
+        beforeEnter: (to, from, next) => {
+          denyRouteAccess(next, '/login');
+        },
         component: () => import('../../views/Categories/Index.vue'),
       },
       {
-        path: '/categorie/:categorie',
+        path: '/dashboard/categorie/:id',
         name: 'categorieEdit',
+        beforeEnter: (to, from, next) => {
+          denyRouteAccess(next, '/login');
+        },
         component: () => import('../../views/Categories/Index.vue'),
       },
     ]

@@ -25,7 +25,7 @@ const changePage = (name) => {
     <p class="home-text">Selecciona una opcion:</p>
     <div class="home-content d-flex flex-column">
       <button class="button-container" @click="changePage('CategoriesList')">Ver todas las categorias</button>
-      <button class="button-container" @click="changePage('')">Crear categorias</button>
+      <button class="button-container" @click="changePage('categorieCreate')">Crear categorias</button>
       <button class="button-container" @click="changePage('')">Cerrar sesion</button>
     </div>
   </div>

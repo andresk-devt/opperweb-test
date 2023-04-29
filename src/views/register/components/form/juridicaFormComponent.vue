@@ -86,8 +86,8 @@ const registerJuridicaUser = async () => {
       signature: signatureHash,
     });
     if (response.token) {
-      successMessage("Se a registrado de manera exitosa!");
-      changePage("Login");
+      successMessage("Se a registrado de manera exitosa!", "Login");
+      // changePage("Login");
     }
   }
 };

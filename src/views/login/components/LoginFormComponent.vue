@@ -1,7 +1,6 @@
 <script setup>
 import { loginSchema } from "@/schema/loginSchema";
 import { showPassword, getPasswordType, togglePassword } from "@/Extend/changeTypePassword";
-import { successMessage } from "@/utils/SweetalertNotifications";
 import { ref } from "vue";
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
@@ -14,10 +13,8 @@ const errors = ref({});
 const store = useStore();
 const route = useRouter();
 
-const changePage = (name) => {
-  route.push({
-    name
-  });
+const changePage = () => {
+  route.push({ name: 'DashboardHome' });
 }
 
 const getTimeZone = async () => {
@@ -64,9 +61,11 @@ const login = async () => {
       signature: signatureHash,
     });
 
+    console.log(response);
+
     if (response.access_token) {
       localStorage.setItem("access_token", response.access_token);
-      changePage("DashboardHome");
+      changePage();
     }
 
   }

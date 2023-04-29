@@ -5,10 +5,13 @@ import { useRouter } from "vue-router";
 const route = useRouter();
 
 const changePage = (name) => {
-  route.push({
-    name,
-  });
-};
+  route.push({ name: name });
+}
+
+const logout = () => {
+  localStorage.clear();
+  changePage("Home")
+}
 </script>
 
 <template>
@@ -34,7 +37,7 @@ const changePage = (name) => {
           </li>
         </ul>
       </div>
-      <div class="sidebar-section">
+      <div class="sidebar-section sidebar-section--logout" @click="logout()">
         <div class="sidebar-section__title">
           <h4>Cerrar sesion</h4>
         </div>
@@ -51,6 +54,9 @@ const changePage = (name) => {
   padding: 25px 0px;
   margin: auto;
   width: 75%;
+}
+.sidebar-section--logout {
+  cursor: pointer;
 }
 .sidebar-section-menu {
   color: var(--white-color);

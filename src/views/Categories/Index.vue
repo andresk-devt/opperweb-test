@@ -1,18 +1,73 @@
 <script setup>
+import { successMessage } from "@/utils/SweetalertNotifications";
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
+import CryptoJS from "crypto-js";
 
 const editMode = ref(false);
 
+const store = useStore();
 const route = useRoute();
-if (route.params.categorie) {
+const router = useRouter();
+
+const changePage = () => {
+  router.push({ name: "CategoriesList" });
+};
+
+if (route.params.id) {
   editMode.value = true;
 } else {
   editMode.value = false;
 }
 
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  return response;
+};
+
 const categorieName = ref("");
-categorieName.value = route.params.categorie;
+
+const triggerButton = async () => {
+  const currentTime = await getTimeZone();
+
+  const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
+  const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
+  const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
+  const signatureHash = CryptoJS.SHA256(signature).toString();
+
+  if (editMode.value) {
+    const payload = {
+      id: route.params.id,
+      body: {
+        nombre: categorieName.value,
+        apiKey: publicKey,
+        utcTimeStamp: currentTime.timezone,
+        signature: signatureHash,
+      },
+    };
+    const response = await store.dispatch(
+      "categories/updateCategorie",
+      payload
+    );
+    if (response.categoria) {
+      successMessage("Se a actualizado de manera exitosa la categoria ", "CategoriesList");
+      // changePage();
+    }
+    return;
+  }
+
+  const response = await store.dispatch("categories/createCategorie", {
+    nombre: categorieName.value,
+    apiKey: publicKey,
+    utcTimeStamp: currentTime.timezone,
+    signature: signatureHash,
+  });
+  if (response.categoria) {
+    successMessage("Se a creado de manera exitosa la categoria", "CategoriesList");
+    // changePage();
+  }
+};
 </script>
 
 <template>
@@ -33,7 +88,7 @@ categorieName.value = route.params.categorie;
           />
         </div>
       </div>
-      <button class="button-container">
+      <button class="button-container" @click="triggerButton()">
         {{ editMode ? "Actualizar" : "Crear" }}
       </button>
     </div>

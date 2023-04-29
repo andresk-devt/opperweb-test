@@ -1,43 +1,58 @@
 <script setup>
 import { useRouter } from "vue-router";
+import CryptoJS from "crypto-js";
+import { useStore } from "vuex";
+import { computed, ref, watch } from "vue";
 
+const store = useStore();
 const route = useRouter();
 
-const changePage = (categorie) => {
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  return response;
+};
+
+const changePage = (id) => {
   route.push({
     name: "categorieEdit",
-    params: { categorie }
-  })
-}
+    params: { id }
+  });
+};
+
+const getCategoriesList = async () => {
+  const currentTime = await getTimeZone();
+
+  const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
+  const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
+  const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
+  const signatureHash = CryptoJS.SHA256(signature).toString();
+
+  await store.dispatch("categories/getCategoriesList", {
+    apiKey: publicKey,
+    utcTimeStamp: currentTime.timezone,
+    signature: signatureHash,
+  });
+};
+
+getCategoriesList();
+
+const categories = computed(() => {
+  const response = store.getters["categories/getCategoriesList"];
+  return response;
+});
 </script>
 
 <template>
   <div class="categorie">
     <h1><strong>Lista de Categorias</strong></h1>
     <div class="categories-list grid-container">
-      <div class="grid-item">
-        Columna 1
-        <span @click="changePage('comedia')">Editar</span>
-      </div>
-      <div class="grid-item">
-        Columna 2
-        <span @click="changePage('accion')">Editar</span>
-      </div>
-      <div class="grid-item">
-        Columna 3
-        <span @click="changePage('miedo')">Editar</span>
-      </div>
-      <div class="grid-item">
-        Columna 4
-        <span @click="changePage('drama')">Editar</span>
-      </div>
-      <div class="grid-item">
-        Columna 5
-        <span @click="changePage('novela')">Editar</span>
-      </div>
-      <div class="grid-item">
-        Columna 6
-        <span @click="changePage('familiares')">Editar</span>
+      <div
+        class="grid-item"
+        v-for="(categorie, index) in categories"
+        :key="index"
+      >
+        {{ categorie.nombre }}
+        <span @click="changePage(categorie.id)">Editar</span>
       </div>
     </div>
   </div>
