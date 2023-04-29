@@ -1,6 +1,6 @@
 import RepositoryFactory from "@/services/RepositoryFactory"
-
 const register = RepositoryFactory.service("register");
+import { errorMessage } from '@/utils/SweetalertNotifications'
 
 export default {
   namespaced: true,
@@ -16,6 +16,7 @@ export default {
         const respnose = await register.register(payload);
         return respnose;
       } catch (error) {
+        errorMessage(error.response.data.error)
         return error;
       }
     }
