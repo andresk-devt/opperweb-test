@@ -1,6 +1,6 @@
 import RepositoryFactory from "@/services/RepositoryFactory"
-
 const login = RepositoryFactory.service("login");
+import { errorMessage } from '@/utils/SweetalertNotifications'
 
 export default {
   namespaced: true,
@@ -16,6 +16,7 @@ export default {
         const respnose = await login.login(payload);
         return respnose;
       } catch (error) {
+        errorMessage(error.response.data.error)
         return error;
       }
     }

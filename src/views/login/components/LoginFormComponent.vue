@@ -46,7 +46,7 @@ const login = async () => {
     const signature = `${privateKey},${publicKey},${currentTime}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
-    store.dispatch("login/login", {
+    const response = await store.dispatch("login/login", {
       email: email.value,
       password: password.value,
       apiKey: publicKey,
