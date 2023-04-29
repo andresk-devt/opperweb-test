@@ -63,6 +63,7 @@ onMounted(async () => {
 @media (max-width: 900px) {
   .layout-content {
     width: 100%;
+    padding: 50px;
   }
   .layout-sidebar {
     display: none;
