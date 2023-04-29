@@ -11,10 +11,6 @@ const store = useStore();
 const route = useRoute();
 const router = useRouter();
 
-const changePage = () => {
-  router.push({ name: "CategoriesList" });
-};
-
 if (route.params.id) {
   editMode.value = true;
 } else {
@@ -52,7 +48,6 @@ const triggerButton = async () => {
     );
     if (response.categoria) {
       successMessage("Se a actualizado de manera exitosa la categoria ", "CategoriesList");
-      // changePage();
     }
     return;
   }
@@ -65,7 +60,6 @@ const triggerButton = async () => {
   });
   if (response.categoria) {
     successMessage("Se a creado de manera exitosa la categoria", "CategoriesList");
-    // changePage();
   }
 };
 </script>
