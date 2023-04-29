@@ -16,7 +16,7 @@ export default {
         const respnose = await login.login(payload);
         return respnose;
       } catch (error) {
-        errorMessage(error.response.data.error)
+        errorMessage(error.response.data.message);
         return error;
       }
     }
