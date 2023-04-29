@@ -7,10 +7,16 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.7",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
+    "crypto-js": "^4.1.1",
+    "sweetalert2": "^11.7.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

@@ -1,0 +1,44 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "poppins", sans-serif;
+  margin: 10px auto;
+  position: relative;
+}
+.input-container .input-container-content {
+  display: flex;
+  align-items: center;
+  padding: 13px;
+  border-radius: 10px;
+  border: 2px solid var(--white-color);
+  outline: none;
+  background: rgba(255, 255, 255, 0.47);
+}
+.input-container .input-container-content div {
+  display: flex;
+}
+.input-container .input-container__label {
+  font-size: 0.9rem;
+  font-weight: lighter;
+  color: var(--white-color);
+  margin: 3px 0px;
+}
+.input-container .input-container__input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+.input-container .input-container-content ion-icon {
+  color: var(--white-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.missing-field {
+  border: 1px solid red !important;
+}
+@media (min-width: 800px) {
+  .input-container .input-container__input::placeholder {
+    color: #d0d0d0;
+  }
+}

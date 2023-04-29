@@ -1,0 +1,67 @@
+:root {
+  --pink-color: #CA38ED;
+  --pink-light-color: #E487FB;
+  --purple-color: #3E1149;
+  --gray-dark-color: #574E5A;
+  --gray-light-color: #BCB1BF;
+  --white-color: #FFFFFF;
+}
+
+/* Global styles */
+/* Header brand styles */
+.brand-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 25px;
+  position: sticky;
+}
+.brand-container img {
+  padding-right: 15px;
+}
+.brand-container .brand-container__text {
+  font-family: "poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--white-color);
+  margin: 0px;
+}
+.brand-container .brand-container__text--pink {
+  color: var(--pink-color);
+}
+.back-button {
+  padding: 10px 25px;
+  position: absolute;
+  top: 80px;
+}
+@media (max-width: 800px) {
+  .back-button {
+    top: 20px;
+  }
+}
+/* Login and register button */
+.button-container {
+  color: #3e1149;
+  background: var(--pink-light-color);
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 45px;
+  font-size: 1rem;
+  font-family: "roboto";
+  border-radius: 12px;
+  margin: 35px auto;
+  cursor: pointer;
+}
+.button-container:hover {
+  background: var(--pink-light-color);
+  opacity: 0.8;
+}
+
+/* fonts */
+@import url("https://use.typekit.net/beb4yio.css");
+
+/* Inputs styles */
+@import "./inputs.css";
+
+/* reset html syles */
+@import "./style.css";
