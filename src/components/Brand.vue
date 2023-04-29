@@ -29,9 +29,9 @@ defineProps({
         >
       </p>
     </div>
-    <div class="back-button" :class="route ? 'have-link' : ''" @click="changePage(route)">
+    <!-- <div class="back-button" :class="route ? 'have-link' : ''" @click="changePage(route)">
       <img src="@/assets/images/back-icon.png" alt="Icon" />
-    </div>
+    </div> -->
   </div>
 </template>
 

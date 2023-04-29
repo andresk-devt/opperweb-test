@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import TimeZone from './modules/TimeZone'
 import Login from './modules/Login'
 import Register from './modules/Register'
+import Me from './modules/Me'
 
 export default createStore({
   state: {
@@ -15,6 +16,7 @@ export default createStore({
   modules: {
     login: Login,
     timezone: TimeZone,
-    register: Register
+    register: Register,
+    me: Me
   }
 })
