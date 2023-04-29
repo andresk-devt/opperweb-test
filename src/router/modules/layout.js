@@ -33,9 +33,24 @@ const layoutRoutes = [
     component: () => import("../../views/layout/Index.vue"),
     children: [
       {
-        path: '',
+        path: '/dashboard',
         name: 'DashboardHome',
         component: () => import('../../views/Home/Index.vue'),
+      },
+      {
+        path: "/dashboard/categories-list",
+        name: "CategoriesList",
+        component: () => import("../../views/CategoriesList/Index.vue"),
+      },
+      {
+        path: '/categorie',
+        name: 'categorieCreate',
+        component: () => import('../../views/Categories/Index.vue'),
+      },
+      {
+        path: '/categorie/:categorie',
+        name: 'categorieEdit',
+        component: () => import('../../views/Categories/Index.vue'),
       },
     ]
   }

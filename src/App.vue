@@ -1,6 +1,7 @@
 <script setup>
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
+import { onMounted } from "vue";
 
 const store = useStore();
 
@@ -23,7 +24,9 @@ const getMeInformation = async () => {
     signature: signatureHash,
   });
 };
-getMeInformation();
+onMounted(async () => {
+  await getMeInformation();
+});
 </script>
 
 <template>

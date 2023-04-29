@@ -66,7 +66,7 @@ const login = async () => {
 
     if (response.access_token) {
       localStorage.setItem("access_token", response.access_token);
-      changePage("Home");
+      changePage("DashboardHome");
     }
 
   }

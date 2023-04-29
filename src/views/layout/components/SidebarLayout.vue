@@ -1,5 +1,14 @@
 <script setup>
 import Brand from "@/components/Brand.vue";
+import { useRouter } from "vue-router";
+
+const route = useRouter();
+
+const changePage = (name) => {
+  route.push({
+    name,
+  });
+};
 </script>
 
 <template>
@@ -11,8 +20,18 @@ import Brand from "@/components/Brand.vue";
           <h4>Categorias</h4>
         </div>
         <ul class="sidebar-section-menu">
-          <li class="sidebar-section-menu__item">Ver todas</li>
-          <li class="sidebar-section-menu__item">Crear</li>
+          <li
+            class="sidebar-section-menu__item"
+            @click="changePage('CategoriesList')"
+          >
+            Ver todas
+          </li>
+          <li
+            class="sidebar-section-menu__item"
+            @click="changePage('categorieCreate')"
+          >
+            Crear
+          </li>
         </ul>
       </div>
       <div class="sidebar-section">
@@ -37,6 +56,9 @@ import Brand from "@/components/Brand.vue";
   color: var(--white-color);
   font-family: "poppins", sans-serif;
   list-style: disc;
+}
+.sidebar-section-menu .sidebar-section-menu__item {
+  cursor: pointer;
 }
 .sidebar-section__title h4 {
   font-family: "poppins", sans-serif;

@@ -1,13 +1,5 @@
 <script setup>
-import { useStore } from "vuex";
-import { computed } from "vue";
 import SidebarLayoutVue from "./components/SidebarLayout.vue";
-
-const store = useStore();
-
-const myInfo = computed(() => {
-  return store.getters["me/getMyInfo"];
-});
 </script>
 
 <template>
@@ -16,9 +8,6 @@ const myInfo = computed(() => {
       <SidebarLayoutVue />
     </div>
     <main class="layout-content">
-      <h1>
-        Hola, <strong>{{ myInfo.name + " " + myInfo.lastname }}</strong>
-      </h1>
       <router-view />
     </main>
   </div>
@@ -37,7 +26,7 @@ const myInfo = computed(() => {
 .layout-content {
   width: 80%;
   background: black;
-  padding: 60px;
+  padding: 100px 60px 60px 60px;
   color: var(--white-color);
   font-family: "poppins", sans-serif;
 }
