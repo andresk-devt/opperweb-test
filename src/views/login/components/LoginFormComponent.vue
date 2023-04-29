@@ -1,15 +1,24 @@
 <script setup>
-import { ref } from "vue";
 import { loginSchema } from "@/schema/loginSchema";
+import { showPassword, getPasswordType, togglePassword } from "@/Extend/changeTypePassword";
+import { successMessage } from "@/utils/SweetalertNotifications";
+import { ref } from "vue";
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
-import { showPassword, getPasswordType, togglePassword } from "@/Extend/changeTypePassword";
+import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
+const errors = ref({});
 
 const store = useStore();
-const errors = ref({});
+const route = useRouter();
+
+const changePage = (name) => {
+  route.push({
+    name
+  });
+}
 
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");
@@ -54,6 +63,11 @@ const login = async () => {
       utcTimeStamp: currentTime.timezone,
       signature: signatureHash,
     });
+
+    if (response.access_token) {
+      // redirect to dashborad
+    }
+
   }
 };
 </script>
