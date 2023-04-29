@@ -1,8 +1,7 @@
 <script setup>
 import naturalFormComponent from "./form/naturalFormComponent.vue";
 import juridicalFormComponent from "./form/juridicaFormComponent.vue";
-import { ref, onMounted } from "vue";
-import { useStore } from "vuex";
+import { ref } from "vue";
 
 const currentComponent = ref(naturalFormComponent);
 
@@ -13,12 +12,6 @@ const updateComponent = (event) => {
     currentComponent.value = juridicalFormComponent;
   }
 };
-
-const store = useStore();
-const getTimeZone = async () => {
-  const response = await store.dispatch("timezone/getTimeZone");
-}
-getTimeZone();
 </script>
 
 <template>
