@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { registerSchema } from "@/schema/naturalSchema";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { successMessage } from '@/utils/SweetalertNotifications'
 import CryptoJS from "crypto-js";
 
 const store = useStore();
@@ -22,6 +24,14 @@ const getPasswordType = () => {
 const getConfirmPasswordType = () => {
   return showConfirmPassword.value ? "text" : "password";
 };
+
+const router = useRouter();
+
+const changePage = (name) => {
+  router.push({
+    name: name
+  });
+}
 
 const name = ref("");
 const lastname = ref("");
@@ -77,7 +87,7 @@ const registerNaturalUser = async () => {
 
     // Codigo aqui
 
-    await store.dispatch("register/registerUser", {
+    const response = await store.dispatch("register/registerUser", {
       "name": name.value,
       "lastname": lastname.value,
       "telephone": phone.value,
@@ -90,7 +100,11 @@ const registerNaturalUser = async () => {
       "apiKey": publicKey,
       "utcTimeStamp": currentTime.timezone,
       "signature": signatureHash
-    })
+    });
+    if (response.token) {
+      successMessage("Se a registrado de manera exitosa!");
+      changePage("Login");
+    }
   }
 };
 </script>
