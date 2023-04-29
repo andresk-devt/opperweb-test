@@ -3,13 +3,12 @@ import CarouselComponent from "@/components/CarouselComponent.vue";
 import Brand from "@/components/Brand.vue";
 import RegisterFormComponent from "./components/RegisterFormComponent";
 import FooterComponent from "../../components/FooterComponent.vue";
-  
 </script>
 
 <template>
   <div class="register">
     <div class="register-content">
-      <Brand route="Login" class="brand-component" />
+      <Brand route="Login" class="brand-component" :showBackButton="true" />
       <div class="register-content-container">
         <div class="register-content-header">
           <img src="@/assets/images/register-form-image.png" alt="" />
@@ -39,7 +38,13 @@ import FooterComponent from "../../components/FooterComponent.vue";
   height: 100%;
 }
 .register-content {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
   width: 50%;
+}
+.register-content::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 .register-content-container {
   width: 80%;

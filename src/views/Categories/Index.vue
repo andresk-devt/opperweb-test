@@ -1,6 +1,6 @@
 <script setup>
 import { successMessage } from "@/utils/SweetalertNotifications";
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import CryptoJS from "crypto-js";
@@ -23,8 +23,15 @@ const getTimeZone = async () => {
 };
 
 const categorieName = ref("");
+const error = ref(false);
 
 const triggerButton = async () => {
+  console.log(categorieName.value);
+  if (categorieName.value.length === 0) {
+    error.value = true;
+    return;
+  }
+  error.value = false;
   const currentTime = await getTimeZone();
 
   const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
@@ -47,7 +54,10 @@ const triggerButton = async () => {
       payload
     );
     if (response.categoria) {
-      successMessage("Se a actualizado de manera exitosa la categoria ", "CategoriesList");
+      successMessage(
+        "Se a actualizado de manera exitosa la categoria ",
+        "CategoriesList"
+      );
     }
     return;
   }
@@ -59,7 +69,10 @@ const triggerButton = async () => {
     signature: signatureHash,
   });
   if (response.categoria) {
-    successMessage("Se a creado de manera exitosa la categoria", "CategoriesList");
+    successMessage(
+      "Se a creado de manera exitosa la categoria",
+      "CategoriesList"
+    );
   }
 };
 </script>
@@ -74,7 +87,10 @@ const triggerButton = async () => {
         <label for="categorie" class="input-container__label"
           >Nombre de la categoria</label
         >
-        <div class="input-container-content">
+        <div
+          class="input-container-content"
+          :class="error ? 'missing-field' : ''"
+        >
           <input
             id="categorie"
             class="input-container__input"

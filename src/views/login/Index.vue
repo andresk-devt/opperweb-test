@@ -10,7 +10,7 @@ import LoginFormComponent from "./components/LoginFormComponent.vue";
 <template>
   <div class="login">
     <div class="login-content">
-      <Brand />
+      <Brand :showBackButton="false" />
       <div class="login-content-container">
         <div class="login-content-header">
           <img src="@/assets/images/login-form-image.png" alt="" />

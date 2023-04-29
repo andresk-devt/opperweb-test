@@ -52,6 +52,8 @@ onMounted(async () => {
   background: var(--purple-color);
 }
 .layout-content {
+  height: 100vh;
+  overflow: auto;
   width: 80%;
   background: black;
   padding: 100px 60px 60px 60px;

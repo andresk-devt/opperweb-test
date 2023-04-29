@@ -60,7 +60,7 @@ const categories = computed(() => {
 
 <style scoped>
 .categories-list {
-  margin: 50px auto;
+  margin-top: 50px;
 }
 .grid-container {
   display: grid;

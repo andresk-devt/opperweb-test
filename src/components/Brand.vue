@@ -7,15 +7,16 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const changePage = (name) => {
   router.push({
-    name: name
+    name: name,
   });
-}
+};
 
 defineProps({
   route: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
+  showBackButton: Boolean,
 });
 </script>
 
@@ -29,9 +30,14 @@ defineProps({
         >
       </p>
     </div>
-    <!-- <div class="back-button" :class="route ? 'have-link' : ''" @click="changePage(route)">
+    <div
+      v-show="showBackButton"
+      class="back-button"
+      :class="route ? 'have-link' : ''"
+      @click="changePage(route)"
+    >
       <img src="@/assets/images/back-icon.png" alt="Icon" />
-    </div> -->
+    </div>
   </div>
 </template>
 

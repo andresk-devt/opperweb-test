@@ -16,7 +16,7 @@ const logout = () => {
 
 <template>
   <div class="sidebar-layout">
-    <Brand class="mt-3" />
+    <Brand class="mt-3" :showBackButton="false" />
     <div class="sidebar-content">
       <div class="sidebar-section">
         <div class="sidebar-section__title">
