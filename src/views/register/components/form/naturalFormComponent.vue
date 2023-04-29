@@ -1,8 +1,5 @@
 <script setup>
-import { ref } from "vue";
 import { registerSchema } from "@/schema/naturalSchema";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
 import { successMessage } from "@/utils/SweetalertNotifications";
 import {
   showPassword,
@@ -12,16 +9,19 @@ import {
   getConfirmPasswordType,
   toggleConfirmPassword,
 } from "@/Extend/changeTypePassword";
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import CryptoJS from "crypto-js";
 
 const store = useStore();
-const router = useRouter();
+const route = useRouter();
 
 const changePage = (name) => {
-  router.push({
-    name: name,
+  route.push({
+    name
   });
-};
+}
 
 const name = ref("");
 const lastname = ref("");
@@ -73,8 +73,6 @@ const registerNaturalUser = async () => {
     const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
     const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
-
-    // Codigo aqui
 
     const response = await store.dispatch("register/registerUser", {
       name: name.value,

@@ -1,7 +1,6 @@
 <script setup>
-import { ref } from "vue";
 import { registerSchema } from "@/schema/juridicaSchema";
-import { useStore } from "vuex";
+import { successMessage } from "@/utils/SweetalertNotifications";
 import {
   showPassword,
   showConfirmPassword,
@@ -10,9 +9,18 @@ import {
   getConfirmPasswordType,
   toggleConfirmPassword,
 } from "@/Extend/changeTypePassword";
-import CryptoJS from 'crypto-js';
+import { ref } from "vue";
+import { useStore } from "vuex";
+import CryptoJS from "crypto-js";
 
 const store = useStore();
+const route = useRouter();
+
+const changePage = (name) => {
+  route.push({
+    name
+  });
+}
 
 const company_name = ref("");
 const nit = ref("");
@@ -51,7 +59,7 @@ const validateForm = async () => {
 const getTimeZone = async () => {
   const response = await store.dispatch("timezone/getTimeZone");
   return response;
-}
+};
 
 const registerJuridicaUser = async () => {
   const isValidForm = await validateForm();
@@ -63,22 +71,23 @@ const registerJuridicaUser = async () => {
     const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
-
-    // Codigo aqui
-
     await store.dispatch("register/registerUser", {
-      "telephone": phone.value,
-      "NIT": nit.value,
-      "razon_social": company_name.value,
-      "type_user_id": "1",
-      "verify_tc": "1",
-      "password": password.value,
-      "password_confirmation": password_confirmation.value,
-      "email": email.value,
-      "apiKey": publicKey,
-      "utcTimeStamp": currentTime.timezone,
-      "signature": signatureHash
-    })
+      telephone: phone.value,
+      NIT: nit.value,
+      razon_social: company_name.value,
+      type_user_id: "1",
+      verify_tc: "1",
+      password: password.value,
+      password_confirmation: password_confirmation.value,
+      email: email.value,
+      apiKey: publicKey,
+      utcTimeStamp: currentTime.timezone,
+      signature: signatureHash,
+    });
+    if (response.token) {
+      successMessage("Se a registrado de manera exitosa!");
+      changePage("Login");
+    }
   }
 };
 </script>
