@@ -22,6 +22,10 @@ const getTimeZone = async () => {
   return response;
 };
 
+const changePage = () => {
+  router.push({ name: "CategoriesList" });
+};
+
 const categorieName = ref("");
 const error = ref(false);
 
@@ -82,6 +86,10 @@ const triggerButton = async () => {
     <h1>
       <strong>{{ editMode ? "Actualizar" : "Crear" }} Categoria</strong>
     </h1>
+    <span class="categorie-go-back" @click="changePage()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      <p>Ver todos</p>
+    </span>
     <div class="categorie-content">
       <div class="input-container">
         <label for="categorie" class="input-container__label"
@@ -109,5 +117,28 @@ const triggerButton = async () => {
 .categorie-content {
   margin: 10px 0px;
   width: 30%;
+}
+.categorie-go-back {
+  cursor: pointer;
+}
+.categorie-go-back span {
+  margin-right: 10px;
+}
+.categorie-go-back p {
+  margin: 0px 0px 0px 10px;
+  text-decoration: underline;
+}
+@media (min-width: 900px) {
+  .categorie-go-back {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .categorie-content {
+    width: 100%;
+  }
+  .categorie-go-back {
+    display: flex;
+  }
 }
 </style>
