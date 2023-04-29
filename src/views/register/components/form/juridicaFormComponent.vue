@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { registerSchema } from "@/schema/juridicaSchema";
+import { useStore } from "vuex";
+import CryptoJS from 'crypto-js';
 
+const store = useStore();
 // Remembere refactor this code to only use once time
 
 const showPassword = ref(false);
@@ -56,14 +59,43 @@ const validateForm = async () => {
   }
 };
 
+const getTimeZone = async () => {
+  const response = await store.dispatch("timezone/getTimeZone");
+  return response;
+}
+
 const registerJuridicaUser = async () => {
   const isValidForm = await validateForm();
-  console.log(isValidForm, "is valid form (?)");
+  if (isValidForm) {
+    const currentTime = await getTimeZone();
+
+    const publicKey = "VBNfgfTYrt5666FGHFG6FGH65GHFGHF656g";
+    const privateKey = "DGDFGDbnbnTRTEfg67hgyTYRTY56gfhdR6";
+    const signature = `${privateKey},${publicKey},${currentTime}`;
+    const signatureHash = CryptoJS.SHA256(signature).toString();
+
+    console.log(signatureHash, 'Este es el token que me devuelve');
+
+    // Codigo aqui
+
+    await store.dispatch("register/registerUser", {
+      "telephone": phone.value,
+      "NIT": nit.value,
+      "razon_social": company_name.value,
+      "type_user_id": 1,
+      "verify_tc": "1",
+      "password": password.value,
+      "password_confirmation": password_confirmation.value,
+      "email": email.value,
+      "apiKey": publicKey,
+      "utcTimeStamp": currentTime.timezone,
+      "signature": signatureHash
+    })
+  }
 };
 </script>
 
 <template>
-  {{ errors }}
   <div class="input-container">
     <label for="razon_social" class="input-container__label"
       >Razon social</label
