@@ -72,7 +72,7 @@ const registerJuridicaUser = async () => {
     const signature = `${privateKey},${publicKey},${currentTime.timezone}`;
     const signatureHash = CryptoJS.SHA256(signature).toString();
 
-    await store.dispatch("register/registerUser", {
+    const response = await store.dispatch("register/registerUser", {
       telephone: phone.value,
       NIT: nit.value,
       razon_social: company_name.value,
@@ -87,7 +87,6 @@ const registerJuridicaUser = async () => {
     });
     if (response.token) {
       successMessage("Se a registrado de manera exitosa!", "Login");
-      // changePage("Login");
     }
   }
 };
