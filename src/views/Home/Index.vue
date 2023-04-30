@@ -15,6 +15,12 @@ const changePage = (name) => {
     name
   });
 }
+
+const logout = () => {
+  localStorage.clear();
+  changePage('Login');
+}
+
 </script>
 
 <template>
@@ -26,7 +32,7 @@ const changePage = (name) => {
     <div class="home-content d-flex flex-column">
       <button class="button-container" @click="changePage('CategoriesList')">Ver todas las categorias</button>
       <button class="button-container" @click="changePage('categorieCreate')">Crear categorias</button>
-      <button class="button-container" @click="changePage('')">Cerrar sesion</button>
+      <button class="button-container" @click="logout()">Cerrar sesion</button>
     </div>
   </div>
 </template>
